@@ -1,6 +1,7 @@
 import Navbar from "../components/navbar";
 import WalletConnectButton from "@/components/connectWalletButton";
 import Market from "../components/Market";
+import Footer from "../components/footer";
 
 export default function Home() {
   return (
@@ -17,11 +18,13 @@ export default function Home() {
         <Market />
       </div>
 
-      <h1>GreenBlocks</h1>
-      <p>
-        GreenBlocks is a project that aims to help people to reduce their carbon
-        footprint by providing them with a platform to buy and sell used items.
-      </p>
+      <div>
+      <br></br>
+      <br></br>
+
+      <Footer />
+      </div>
+
     </div>
   );
 }

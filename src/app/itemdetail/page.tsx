@@ -1,5 +1,6 @@
 "use client";
 import Navbar from "../../components/navbar";
+import Footer from "../../components/footer";
 
 import React from "react";
 import { useSearchParams } from "next/navigation";
@@ -12,8 +13,22 @@ import {
   Button,
   Grid,
 } from "@mui/material";
-import { ArrowBack } from "@mui/icons-material";
+import { AlignHorizontalRight, ArrowBack } from "@mui/icons-material";
 import { useRouter } from "next/navigation";
+
+import { TextField } from '@mui/material';
+import { styled } from '@mui/material/styles';
+import Divider from '@mui/material/Divider';
+
+
+
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+
+
 
 const items = [
   {
@@ -90,6 +105,30 @@ const items = [
   },
 ];
 
+
+const CustomButton = styled(Button)({
+  backgroundColor: '#3E8662', // Tu color personalizado
+  '&:hover': {
+    backgroundColor: '#e64a19', // Color en hover (opcional)
+  },
+});
+
+
+const CustomButton2 = styled(Button)({
+  backgroundColor: '#D83620', // Tu color personalizado
+  '&:hover': {
+    backgroundColor: '#e64a19', // Color en hover (opcional)
+  },
+});
+
+
+
+
+
+
+
+
+
 const ItemDetail = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -122,7 +161,7 @@ const ItemDetail = () => {
   return (
     <div>
       <Navbar />
-      <Container>
+      <Container style={{marginTop: "1%", marginBottom: "3%"}}>
         <Grid container spacing={4} justifyContent="center">
           <Grid item xs={12} sm={8} md={6}>
             <Card>
@@ -135,31 +174,155 @@ const ItemDetail = () => {
                 alt={item.title}
                 height="240"
                 image={item.image}
-                style={{ height: "400px", objectFit: "cover" }}
+                style={{ height: "400px", objectFit: "cover"}}
               />
               <CardContent>
-                <Typography variant="h5" component="div">
-                  {item.title}
-                </Typography>
+              <Typography variant="h5" component="div" style={{ fontWeight: 'bold' }}>
+                {item.title}
+              </Typography>
+
+
+
                 <Typography variant="body2" color="text.secondary">
                   {item.description}
                 </Typography>
-                <Typography variant="h6" color="primary" marginTop={2}>
+
+                <Typography variant="h6" marginTop={2}
+                    sx={{
+                      mt: "auto",
+                      textAlign: "right", // Alinear a la derecha
+                      fontWeight: "bold", // Negrita
+                    }}>
                   ${item.value.toLocaleString()}
                 </Typography>
-                <Button
+
+                {/* <Button
                   variant="contained"
                   color="primary"
                   fullWidth
                   onClick={() => alert("Compra realizada con éxito!")}
                 >
                   Comprar
+                </Button> */}
+
+
+
+            <Grid container alignItems="center" justifyContent="center" spacing={2} marginTop={1}>
+              <Grid item>
+                <TextField
+                  type="number"
+                  variant="outlined"
+                  size="small"
+                  inputProps={{ min: 0 }}
+
+                />
+              </Grid>
+
+              {/* <Grid item>
+                <Button variant="contained" color="success">
+                  Fondear
                 </Button>
+                 </Grid> */}
+
+
+              <Grid item>
+                <CustomButton variant="contained">
+                  Fondear
+                </CustomButton>
+              </Grid>
+            </Grid>
+
+            {/* <Divider  style={{marginTop: "3%", marginBottom: "3%"}}/> */}
+            
+
+
+            <Accordion style={{ marginTop: "3%", marginBottom: "3%" }}>
+  <AccordionSummary
+    expandIcon={<ArrowDropDownIcon />}
+    aria-controls="panel2-content"
+    id="panel2-header"
+  >
+    <Typography>Publico</Typography>
+  </AccordionSummary>
+  <AccordionDetails>
+    <div style={{ display: "flex", alignItems: "center", marginLeft: "auto", gap: "10px", width: "100%", justifyContent: "flex-end" }}>
+      <Typography>
+        Historial de denuncias
+      </Typography>
+
+      <CustomButton2 variant="contained" size="small">
+        Reportar
+      </CustomButton2>
+    </div>
+  </AccordionDetails>
+</Accordion>
+
+
+
+<Accordion style={{ marginTop: '3%', marginBottom: '3%' }}>
+    <AccordionSummary
+      expandIcon={<ArrowDropDownIcon />}
+      aria-controls="panel2-content"
+      id="panel2-header"
+    >
+      <Typography>Dueño</Typography>
+    </AccordionSummary>
+    <AccordionDetails
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        gap: '16px', // Ajusta el espacio entre botones según lo necesites
+      }}
+    >
+      <CustomButton variant="contained">Stakear</CustomButton>
+      <CustomButton variant="contained">Retirar</CustomButton>
+    </AccordionDetails>
+  </Accordion>
+
+
+      {/* <Grid container spacing={2} marginLeft="20%">
+      <Grid item xs={12} md={6}>
+        <Accordion>
+          <AccordionSummary
+            expandIcon={<ArrowDropDownIcon />}
+            aria-controls="panel2-content"
+            id="panel2-header"
+          >
+            <Typography>Historial de Denuncias</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography>
+              Sin denuncias
+            </Typography>
+          </AccordionDetails>
+        </Accordion>
+
+      </Grid>
+      <Grid item xs={12} md={6}>
+        <CustomButton2 variant="contained" size="small">
+          Reportar
+        </CustomButton2>
+      </Grid>
+    </Grid> */}
+
+
+
+
+
+            {/* <Divider  style={{marginTop: "3%", marginBottom: "3%"}}/> */}
+
+
+
               </CardContent>
             </Card>
           </Grid>
         </Grid>
       </Container>
+
+      <div>
+      <Footer />
+      </div>
+
     </div>
   );
 };

@@ -119,15 +119,28 @@ const Marketplace = () => {
                 height="180" // Aumentado el alto de la imagen
                 image={item.image}
                 alt={item.title}
+
               />
               <CardContent>
-                <Typography variant="h4" component="div">
+
+                {/* <Typography variant="h4" component="div">
                   {item.title}
-                </Typography>
+                </Typography> */}
+
+                <Typography variant="h5" component="div" style={{ fontWeight: 'bold' }}>
+                {item.title}
+              </Typography>
+
+
                 <Typography variant="body2" color="text.secondary">
                   {item.description}
                 </Typography>
-                <Typography variant="body2" color="text.primary" sx={{ mt: 1 }}>
+                <Typography variant="body2" color="text.primary" 
+                   sx={{
+                    mt: "auto",
+                    textAlign: "right", // Alinear a la derecha
+                    fontWeight: "bold", // Negrita
+                  }}>
                   ${item.value}
                 </Typography>
               </CardContent>
