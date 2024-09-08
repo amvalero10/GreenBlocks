@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { SyntheticEvent, useState } from "react";
 import { useRouter } from "next/navigation"; // Cambiado a 'next/navigation'
 import Box from "@mui/material/Box";
 import BottomNavigation from "@mui/material/BottomNavigation";
@@ -12,9 +12,9 @@ export default function Navbar() {
   const [value, setValue] = useState(1);
   const router = useRouter(); // Usa el router del paquete 'next/navigation'
 
-  const handleChange = (event: any, newValue: any) => {
-    setValue(newValue);
-    switch (newValue) {
+  const handleChange = (_: SyntheticEvent, value: number) => {
+    setValue(value);
+    switch (value) {
       case 0:
         router.push("/home"); // Ruta para la página de inicio
         break;

@@ -118,6 +118,7 @@ const ItemDetail = () => {
   const handleBack = () => {
     router.back();
   };
+    
 
   return (
     <div>
@@ -153,7 +154,7 @@ const ItemDetail = () => {
                   fullWidth
                   onClick={() => alert("Compra realizada con éxito!")}
                 >
-                  Comprar
+                  Funding
                 </Button>
               </CardContent>
             </Card>
