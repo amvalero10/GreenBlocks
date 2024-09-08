@@ -14,6 +14,8 @@ import {
 } from "@mui/material";
 import { ArrowBack } from "@mui/icons-material";
 import { useRouter } from "next/navigation";
+import { useReadContract } from "wagmi";
+import { contractAbi, contractAddress } from "@/constants/contract";
 
 const items = [
   {
@@ -93,6 +95,11 @@ const items = [
 const ItemDetail = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
+  const result = useReadContract({
+    abi: contractAbi,
+    address: contractAddress,
+    functionName: "getProjects",
+  });
   const itemId: string | null = searchParams.get("id")
     ? searchParams.get("id")
     : "";
@@ -118,7 +125,10 @@ const ItemDetail = () => {
   const handleBack = () => {
     router.back();
   };
-    
+
+  const handleFunding = () => {
+    console.log({result: result});
+  };
 
   return (
     <div>
@@ -152,7 +162,7 @@ const ItemDetail = () => {
                   variant="contained"
                   color="primary"
                   fullWidth
-                  onClick={() => alert("Compra realizada con éxito!")}
+                  onClick={handleFunding}
                 >
                   Funding
                 </Button>
