@@ -1,6 +1,9 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { headers } from "next/headers";
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
+import { StyledRoot } from './StyledRoot';
+
 
 import { cookieToInitialState } from "wagmi";
 
@@ -20,8 +23,11 @@ export default function RootLayout({
   const initialState = cookieToInitialState(config, headers().get("cookie"));
   return (
     <html lang="en">
-      <body>
+      <body >
+      <AppRouterCacheProvider>
+      {/* <StyledRoot>{children}</StyledRoot> */}
         <AppKitProvider initialState={initialState}>{children}</AppKitProvider>
+      </AppRouterCacheProvider>
       </body>
     </html>
   );
