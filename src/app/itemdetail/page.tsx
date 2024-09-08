@@ -157,6 +157,7 @@ const ItemDetail = () => {
   const handleBack = () => {
     router.back();
   };
+    
 
   return (
     <div>
